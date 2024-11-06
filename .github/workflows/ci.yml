@@ -12,7 +12,7 @@ jobs:
     permissions:
       id-token: write # need this for OIDC
       contents: read
-    environment: main
+    environment: CloudPak4IntegrationEnv1
     outputs:
       image-tag: ${{ steps.set-image-tag.outputs.IMAGE_TAG }} 
     steps:
@@ -25,7 +25,7 @@ jobs:
           role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
           aws-region: ${{ vars.AWS_REGION }}
 
-          
+
       # TODO
       # Configure AWS credentials
       # CloudFormation Lint
