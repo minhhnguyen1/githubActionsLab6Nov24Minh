@@ -20,3 +20,38 @@ Follow the instruction on the workshop for steps by steps detail on how to use t
 ## Final Architecture
 
 ![Architecture](/static/images/deploy-to-aws-with-github-action.png)
+
+GITHUB_ORG=minhhnguyen1
+GITHUB_REPO=githubActionsLab6Nov24Minh
+ROLE_NAME=myCICDrole
+ECR_REPO=allianzepo
+ECS_CLUSTER_NAME=AllianzCluster
+AWS_REGION=us-east-1
+AVAILABILITY_ZONES=us-east-1a,us-east-1b,us-east-1c
+
+aws cloudformation describe-stacks --stack-name environment-bootstrap --region us-east-1 | jq ".Stacks[0].Outputs[]"
+{
+  "OutputKey": "VPCStackName",
+  "OutputValue": "environment-bootstrap-VPCStack-GVCLKIGFIHEP",
+  "Description": "VPC Stack Name for import"
+}
+{
+  "OutputKey": "ECRRepositoryName",
+  "OutputValue": "allianzepo",
+  "Description": "ECR Repository Name"
+}
+{
+  "OutputKey": "RoleGithubActionsARN",
+  "OutputValue": "arn:aws:iam::537772959137:role/myCICDrole",
+  "Description": "CICD Role for GitHub Actions"
+}
+{
+  "OutputKey": "AWSRegion",
+  "OutputValue": "us-east-1",
+  "Description": "AWS Region for stack deployment"
+}
+{
+  "OutputKey": "IdpGitHubOidc",
+  "OutputValue": "arn:aws:iam::537772959137:oidc-provider/token.actions.githubusercontent.com",
+  "Description": "ARN of Github OIDC Provider"
+}
